@@ -1,0 +1,15 @@
+
+attempt_transmission(message: STRING) is
+local
+	failures: INTEGER;
+do
+	if failures < max_attempts
+	then
+		unsafe_transmit(message)
+	else
+		failed := true;
+	end
+rescue
+	failures := failures + 1;
+	retry;
+end
